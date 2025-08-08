@@ -11,4 +11,12 @@ class FloatingKeyboardService : InputMethodService() {
         keyboardView = FloatingKeyboardView(this)
         return keyboardView
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (::keyboardView.isInitialized) {
+            keyboardView.cleanUp()
+        }
+    }
+
 }
